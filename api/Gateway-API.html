@@ -358,10 +358,176 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><a name="ANTGateway"></a></p>
+                                <h2 id="functions">Functions</h2>
+<dl>
+<dt><a href="#getVSInletUri">getVSInletUri(name)</a> &#x21D2; <code>String</code></dt>
+<dd><p>(Internal function) Get inlet resource&apos;s URI with given target virtual sensor</p>
+</dd>
+<dt><a href="#getVSOutletUri">getVSOutletUri(name)</a> &#x21D2; <code>String</code></dt>
+<dd><p>(Internal function) Get outlet resource&apos;s URI with given target virtual sensor</p>
+</dd>
+<dt><a href="#getVSSettingUri">getVSSettingUri(name)</a> &#x21D2; <code>String</code></dt>
+<dd><p>(Internal function) Get setting resource&apos;s URI with given target virtual sensor</p>
+</dd>
+<dt><a href="#ANTGateway">ANTGateway()</a></dt>
+<dd><p>ANT Gateway API&apos;s main object.</p>
+<p>In ANT framework, gateway provides sensor virtualization and DNN
+partitioning. Sensor virtualization means unifying interfaces to access
+physical sensors, soft sensors, local sensors, and remote sensors.
+DNN partitioning means executing a DNN on multiple heterogeneous devices.
+In real IoT systems, there are heterogeneous devices including gateway,
+but the single device among them cannot provide sufficient computational
+resources to DNNs. Therefore, DNN partitioning is required.</p>
+<p>There are two ways to implement gateway in ANT framework.</p>
+<ol>
+<li>ML fragment element (Based on gstreamer)</li>
+<li>Virtual sensor (Based on OCF standard)</li>
+</ol>
+<p>ML fragment element is an approach to extend the gstreamer to DNN
+partitioning. In this way, to associate a DNN with a physical sensor, the
+app developer must implement their own sensor sampling element that can be
+compatible to gstreamer.</p>
+<p>Actually, many IoT devices does not use gstreamer-based approach, but use
+OCF standard. Therefore, we additionally provide virtual sensor, an approach
+based on OCF standard.</p>
+<p>Virtual sensor is an abstract layer that provide unified interface of
+physical sensors, rule-based soft sensors, and DNN-based soft sensors
+(a.k.a. deep sensors). It also supports DNN partitioning on the deep
+sensors. To support that, ANT additionally provides DNN fragment engine
+and gateway manager.</p>
+</dd>
+</dl>
+
+<p><a name="getVSInletUri"></a></p>
+<h2 id="getvsinleturiname-&#x21D2;-string">getVSInletUri(name) &#x21D2; <code>String</code></h2>
+<p>(Internal function) Get inlet resource&apos;s URI with given target virtual sensor</p>
+<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>String</code> - the name of inlet resource  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>the name of target virtual sensor</td>
+</tr>
+</tbody>
+</table>
+<p><a name="getVSOutletUri"></a></p>
+<h2 id="getvsoutleturiname-&#x21D2;-string">getVSOutletUri(name) &#x21D2; <code>String</code></h2>
+<p>(Internal function) Get outlet resource&apos;s URI with given target virtual sensor</p>
+<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>String</code> - the name of outlet resource  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>the name of target virtual sensor</td>
+</tr>
+</tbody>
+</table>
+<p><a name="getVSSettingUri"></a></p>
+<h2 id="getvssettinguriname-&#x21D2;-string">getVSSettingUri(name) &#x21D2; <code>String</code></h2>
+<p>(Internal function) Get setting resource&apos;s URI with given target virtual sensor</p>
+<p><strong>Kind</strong>: global function<br><strong>Returns</strong>: <code>String</code> - the name of setting resource  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>the name of target virtual sensor</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ANTGateway"></a></p>
 <h2 id="antgateway">ANTGateway()</h2>
-<p>ANT Gateway API</p>
+<p>ANT Gateway API&apos;s main object.</p>
+<p>In ANT framework, gateway provides sensor virtualization and DNN
+partitioning. Sensor virtualization means unifying interfaces to access
+physical sensors, soft sensors, local sensors, and remote sensors.
+DNN partitioning means executing a DNN on multiple heterogeneous devices.
+In real IoT systems, there are heterogeneous devices including gateway,
+but the single device among them cannot provide sufficient computational
+resources to DNNs. Therefore, DNN partitioning is required.</p>
+<p>There are two ways to implement gateway in ANT framework.</p>
+<ol>
+<li>ML fragment element (Based on gstreamer)</li>
+<li>Virtual sensor (Based on OCF standard)</li>
+</ol>
+<p>ML fragment element is an approach to extend the gstreamer to DNN
+partitioning. In this way, to associate a DNN with a physical sensor, the
+app developer must implement their own sensor sampling element that can be
+compatible to gstreamer.</p>
+<p>Actually, many IoT devices does not use gstreamer-based approach, but use
+OCF standard. Therefore, we additionally provide virtual sensor, an approach
+based on OCF standard.</p>
+<p>Virtual sensor is an abstract layer that provide unified interface of
+physical sensors, rule-based soft sensors, and DNN-based soft sensors
+(a.k.a. deep sensors). It also supports DNN partitioning on the deep
+sensors. To support that, ANT additionally provides DNN fragment engine
+and gateway manager.</p>
 <p><strong>Kind</strong>: global function  </p>
+<ul>
+<li><a href="#ANTGateway">ANTGateway()</a><ul>
+<li><a href="#ANTGateway+createImgClsImagenetElement">.createImgClsImagenetElement(modelPath, numFragments, targetUri)</a></li>
+<li><a href="#ANTGateway+getVSAdapter">.getVSAdapter()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="ANTGateway+createImgClsImagenetElement"></a></p>
+<h3 id="antgatewaycreateimgclsimagenetelementmodelpath-numfragments-targeturi">antGateway.createImgClsImagenetElement(modelPath, numFragments, targetUri)</h3>
+<p>ANTGateway.createImgClsImageNetElement</p>
+<p><strong>Kind</strong>: instance method of <a href="#ANTGateway"><code>ANTGateway</code></a>  </p>
+<table>
+<thead>
+<tr>
+<th>Param</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>modelPath</td>
+<td><code>String</code></td>
+<td>the path of image classification model</td>
+</tr>
+<tr>
+<td>numFragments</td>
+<td><code>Number</code></td>
+<td>the number of fragments</td>
+</tr>
+<tr>
+<td>targetUri</td>
+<td><code>String</code></td>
+<td>the URI of target device that will be used for                           DNN partitioning Create a ML fragment element that runs a image classificaiton model trained with ImageNet dataset. It is the first way to perform gateway-centric DNN partitioning. It internally uses gstreamer.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="ANTGateway+getVSAdapter"></a></p>
+<h3 id="antgatewaygetvsadapter">antGateway.getVSAdapter()</h3>
+<p>ANTGateway.getVSAdapter()
+Create a virtual sensor adapter. It is the second way to perform gateway-centric DNN partitioning. It internally uses OCF standard.</p>
+<p><strong>Kind</strong>: instance method of <a href="#ANTGateway"><code>ANTGateway</code></a>  </p>
 
                                 
                                 </section>
@@ -405,7 +571,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Gateway API","level":"3.4","depth":1,"next":{"title":"ANT Classic Guide","level":"4.1","depth":1,"path":"ANT-Classic-Guide.md","ref":"ANT-Classic-Guide.md","articles":[]},"previous":{"title":"ML API","level":"3.3","depth":1,"path":"api/ML-API.md","ref":"api/ML-API.md","articles":[]},"dir":"ltr"},"config":{"plugins":["insert-logo","page-toc"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"insert-logo":{"url":"https://raw.githubusercontent.com/SKKU-ESLAB/ANT/master/docs/logo.png","style":"background: none; height: 150px;"},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"intro.md","glossary":"GLOSSARY.md","summary":"toc.md"},"variables":{},"title":"ANT Framework","gitbook":"3.2.2"},"file":{"path":"api/Gateway-API.md","mtime":"2021-01-07T16:56:51.520Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2021-01-07T16:56:56.116Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Gateway API","level":"3.4","depth":1,"next":{"title":"ANT Classic Guide","level":"4.1","depth":1,"path":"ANT-Classic-Guide.md","ref":"ANT-Classic-Guide.md","articles":[]},"previous":{"title":"ML API","level":"3.3","depth":1,"path":"api/ML-API.md","ref":"api/ML-API.md","articles":[]},"dir":"ltr"},"config":{"plugins":["insert-logo","page-toc"],"root":"./docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"insert-logo":{"url":"https://raw.githubusercontent.com/SKKU-ESLAB/ANT/master/docs/logo.png","style":"background: none; height: 150px;"},"page-toc":{"selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","position":"before-first","showByDefault":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"intro.md","glossary":"GLOSSARY.md","summary":"toc.md"},"variables":{},"title":"ANT Framework","gitbook":"3.2.2"},"file":{"path":"api/Gateway-API.md","mtime":"2021-03-10T16:30:24.118Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2021-03-10T16:30:28.841Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
